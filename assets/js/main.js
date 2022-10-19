@@ -39,10 +39,10 @@ buttonEl.addEventListener("click", function() {
     timeId = setInterval(function () {
 
         timerEl.innerText = seconds;
-        seconds++
+        ++seconds
 
         // timer stop dopo 30seconi 
-        if (seconds == 30) {
+        if (seconds == 31) {
 
             //fermo il timer
             clearInterval(timeId);
@@ -54,12 +54,18 @@ buttonEl.addEventListener("click", function() {
             fourthRndNumberEl.innerText = "";
             fifthRndNumberEl.innerText = "";
 
-            // chiedo all'utente di inserire i numeri che si ricorda
-            const firstUserNumber = prompt("inserisci i numeri che ti ricordi");
-            const secondUserNumber = prompt("inserisci i numeri che ti ricordi");
-            const thirdUserNumber = prompt("inserisci i numeri che ti ricordi");
-            const fourthUserNumber = prompt("inserisci i numeri che ti ricordi");
-            const fifthUserNumber = prompt("inserisci i numeri che ti ricordi");
+            promptUser = setInterval(function () {
+                // chiedo all'utente di inserire i numeri che si ricorda
+                const firstUserNumber = prompt("inserisci i numeri che ti ricordi");
+                const secondUserNumber = prompt("inserisci i numeri che ti ricordi");
+                const thirdUserNumber = prompt("inserisci i numeri che ti ricordi");
+                const fourthUserNumber = prompt("inserisci i numeri che ti ricordi");
+                const fifthUserNumber = prompt("inserisci i numeri che ti ricordi");  
+
+                clearInterval(promptUser);
+
+            }, 50)
+
         }
 
     }, 1000)
