@@ -48,7 +48,7 @@ buttonEl.addEventListener("click", function() {
         ++seconds
 
         // timer stop dopo 30seconi 
-        if (seconds == 5) {
+        if (seconds == 31) {
 
             //fermo il timer
             clearInterval(timeId);
@@ -119,46 +119,6 @@ buttonEl.addEventListener("click", function() {
         }
 
     }, 1000)
-
-    // Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
-    // resultGame = setInterval(function(){
-
-    //     if (numbersArray.includes(firstUserNumber)) {
-    //         console.log("sono nel primo");
-    //         score++;
-    //     }  
-
-    //     if (numbersArray.includes(secondUserNumber)) {
-    //         console.log("sono nel secondo");
-    //         score++;
-    //     } 
-        
-    //     if (numbersArray.includes(thirdUserNumber)) {
-    //         console.log("sono nel terzo");
-    //         score++;
-    //     } 
-        
-    //     if (numbersArray.includes(fourthUserNumber)) {
-    //         console.log("sono nel quarto");
-    //         score++;
-    //     } 
-        
-    //     if (numbersArray.includes(fifthUserNumber)) {
-    //         console.log("sono nel quinto");
-    //         score++;
-    //     }
-
-    //     console.log(score);
-    //     console.log(numbersArray);
-    //     console.log(firstUserNumber);
-    //     console.log(secondUserNumber);
-    //     console.log(thirdUserNumber);
-    //     console.log(fourthUserNumber);
-    //     console.log(fifthUserNumber);
-
-    //     clearInterval(resultGame);
-
-    // }, 35000)
 
 })
 
