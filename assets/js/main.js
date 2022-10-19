@@ -13,10 +13,14 @@ const thirdRndNumberEl = document.querySelector(".thirdRndNumber");
 const fourthRndNumberEl = document.querySelector(".fourthRndNumber");
 const fifthRndNumberEl = document.querySelector(".fifthRndNumber");
 
+//prendo elemento result
+const resultEl = document.querySelector(".result");
+
 
 //creo timer 30 secondi
 let timeId;
 let seconds = 0;
+let score = 0;
 
 //ascolto il click su play
 buttonEl.addEventListener("click", function() {
@@ -27,6 +31,8 @@ buttonEl.addEventListener("click", function() {
     thirdRnd = getRandomNumber(1, 100);
     fourthRnd = getRandomNumber(1, 100);
     fifthRnd = getRandomNumber(1, 100);
+
+    const numbersArray = [firstRnd, secondRnd, thirdRnd, fourthRnd, fifthRnd];
 
     // numeri random
     firstRndNumberEl.innerText = firstRnd;
@@ -42,7 +48,7 @@ buttonEl.addEventListener("click", function() {
         ++seconds
 
         // timer stop dopo 30seconi 
-        if (seconds == 31) {
+        if (seconds == 5) {
 
             //fermo il timer
             clearInterval(timeId);
@@ -55,13 +61,57 @@ buttonEl.addEventListener("click", function() {
             fifthRndNumberEl.innerText = "";
 
             promptUser = setInterval(function () {
-                // chiedo all'utente di inserire i numeri che si ricorda
-                const firstUserNumber = prompt("inserisci i numeri che ti ricordi");
-                const secondUserNumber = prompt("inserisci i numeri che ti ricordi");
-                const thirdUserNumber = prompt("inserisci i numeri che ti ricordi");
-                const fourthUserNumber = prompt("inserisci i numeri che ti ricordi");
-                const fifthUserNumber = prompt("inserisci i numeri che ti ricordi");  
 
+                // chiedo all'utente di inserire i numeri che si ricorda
+                const firstUserNumber = Number(prompt("inserisci i numeri che ti ricordi"));
+                const secondUserNumber = Number(prompt("inserisci i numeri che ti ricordi"));
+                const thirdUserNumber = Number(prompt("inserisci i numeri che ti ricordi"));
+                const fourthUserNumber = Number(prompt("inserisci i numeri che ti ricordi"));
+                const fifthUserNumber = Number(prompt("inserisci i numeri che ti ricordi"));  
+
+                const userNumberArray = [];
+
+                if (numbersArray.includes(firstUserNumber)) {
+                    userNumberArray.push(firstUserNumber);
+                    score++;
+                }  
+        
+                if (numbersArray.includes(secondUserNumber)) {
+                    userNumberArray.push(secondUserNumber);
+                    score++;
+                } 
+                
+                if (numbersArray.includes(thirdUserNumber)) {
+                    userNumberArray.push(thirdUserNumber);
+                    score++;
+                } 
+                
+                if (numbersArray.includes(fourthUserNumber)) {
+                    userNumberArray.push(fourthUserNumber);
+                    score++;
+                } 
+                
+                if (numbersArray.includes(fifthUserNumber)) {
+                    userNumberArray.push(fifthUserNumber);
+                    score++;
+                }
+        
+                
+
+                if (numbersArray == userNumberArray){
+
+                    resultEl.innerText = `Bravo! hai indovinato ${score} su 5 numeri. I tuoi numeri corretti: ${userNumberArray}`;
+
+                } else if (score == 0){
+
+                    resultEl.innerText = `Ops! hai indovinato ${score} su 5 numeri`;
+
+                } else {
+
+                    resultEl.innerText = `Hai indovinato ${score} su 5. I tuoi numeri corretti: ${userNumberArray}`;
+
+                }
+                
                 clearInterval(promptUser);
 
             }, 50)
@@ -70,33 +120,48 @@ buttonEl.addEventListener("click", function() {
 
     }, 1000)
 
+    // Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
+    // resultGame = setInterval(function(){
 
+    //     if (numbersArray.includes(firstUserNumber)) {
+    //         console.log("sono nel primo");
+    //         score++;
+    //     }  
+
+    //     if (numbersArray.includes(secondUserNumber)) {
+    //         console.log("sono nel secondo");
+    //         score++;
+    //     } 
+        
+    //     if (numbersArray.includes(thirdUserNumber)) {
+    //         console.log("sono nel terzo");
+    //         score++;
+    //     } 
+        
+    //     if (numbersArray.includes(fourthUserNumber)) {
+    //         console.log("sono nel quarto");
+    //         score++;
+    //     } 
+        
+    //     if (numbersArray.includes(fifthUserNumber)) {
+    //         console.log("sono nel quinto");
+    //         score++;
+    //     }
+
+    //     console.log(score);
+    //     console.log(numbersArray);
+    //     console.log(firstUserNumber);
+    //     console.log(secondUserNumber);
+    //     console.log(thirdUserNumber);
+    //     console.log(fourthUserNumber);
+    //     console.log(fifthUserNumber);
+
+    //     clearInterval(resultGame);
+
+    // }, 35000)
 
 })
 
-/**
- * Genero i numeri in cui ci saranno le bombe in maniera casuale
- * @param {Number} min minima casella 
- * @param {Number} max casella massima in base al livello
- * @returns array with random number
- */
- function generateBombs(min, max) {
-
-    let bombs = [];
-    
-    while (bombs.length !== 16){
-        // assegno a bomb un valore casuale
-        const bomb = getRandomNumber(min, max);
-
-        // se bomb ha un valore che non c'è in bombs lo aggiungo
-        if (!bombs.includes(bomb)) {
-            bombs.push(bomb);
-        }
-
-    }
-
-    return bombs
-}
 
 /**
  * Genero un numero random
@@ -108,15 +173,3 @@ function getRandomNumber (min, max) {
     return Math.floor(Math.random() * (max - min) ) + min;
 }
 
-
-
-
-// Visualizzare in pagina 5 numeri casuali. 
-
-// Dopo 30 secondi i numeri scompaiono 
-
-
-// l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt(). 
-
-
-// Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
